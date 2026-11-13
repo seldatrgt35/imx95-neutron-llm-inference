@@ -1,0 +1,4 @@
+# Host-side analysis only. Do not install this environment over the target BSP's ONNX Runtime.
+# Optional diagnostics: pip install -r requirements-analysis.txt
+onnx>=1.16
+numpy>=1.24

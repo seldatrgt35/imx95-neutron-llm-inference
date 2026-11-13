@@ -1,0 +1,14 @@
+id,date,category,metric,value,units,source,interpretation
+M-001,2026-11-12,qwen3_4b_chat,input_tokens,21,tokens,conversation_report,app_output
+M-002,2026-11-12,qwen3_4b_chat,generated_tokens,128,tokens,conversation_report,app_output
+M-003,2026-11-12,qwen3_4b_chat,time_to_first_token,1.976,seconds,conversation_report,app_output
+M-004,2026-11-12,qwen3_4b_chat,total_generation_time,47.31,seconds,conversation_report,app_output
+M-005,2026-11-12,qwen3_4b_chat,decode_speed,2.8,tokens_per_second,conversation_report,app_output
+M-006,2026-11-12,qwen3_4b_chat,npu_prefix_time,19.504,seconds,conversation_report,application_label_not_validated_offload
+M-007,2026-11-12,qwen3_4b_chat,cpu_suffix_time,26.632,seconds,conversation_report,application_label_not_validated_offload
+M-008,2026-11-11,onnx_graph,matmul_nbits_assigned_neutron,253,nodes,terminal_20261112_113926,static_assignment_not_execution
+M-009,2026-11-11,onnx_graph,group_query_attention_count,36,nodes,research_session,graph_inventory
+M-010,2026-11-11,ort_session,cpu_session_load_time,33.91,seconds,conversation_report,CPU_loaded
+M-011,2026-11-11,neutron_allocator,requested_cma_userspace_memory,2048,MiB_reported,terminal_20261112_113926,four_512_MiB_slots
+M-012,2026-11-11,litert_mobilenet,average_inference_time,116.48,milliseconds,terminal_20261111_082645,mixed_accelerators_cannot_prove_full_npu
+M-013,2026-11-11,onnx_graph,nodes_assigned_cpu,404,nodes,terminal_20261112_113926,static_assignment_not_execution

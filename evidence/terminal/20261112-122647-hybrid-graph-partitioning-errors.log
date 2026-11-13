@@ -1,0 +1,538 @@
+.onnx_cpp2py_export.checker.ValidationError: Data of TensorProto ( tensor name: model.embed_tokens.weight) should be stored in /root/Qwen3-4B-HYBRID/model.onnx.data, but it has multiple hard links, in
+dicating a potential hardlink attack.
+(venv) root@imx95evk:~/eiq_genai_flow# python3 - <<'PY'
+de = script.read_text()
+
+# Hard link yerine symbolic link kullan.
+code = code.replace(".hardlink_to(", ".symlink_to(")
+
+# Dosya \xfczerinden do\u011frulama yerine, external data y\xfcklemeden
+# grafik do\u011frulamas\u0131 yap.
+old = "onnx.checker.check_model(str(path))"
+new = """check_graph = onnx.load(str(path), load_external_data=False)
+    onnx.checker.check_model(check_graph)"""
+
+if old not in code:
+    raise SystemExit("Beklenen checker sat\u0131r\u0131 bulunamad\u0131. Script de\u011fi\u015ftirilmedi.")
+
+code = code.replac> from pathlib import Path
+> 
+> script = Path("/root/split_qwen_hybrid.py")
+> code = script.read_text()
+> 
+(venv) root@imx95evk:~/eiq_genai_flow# rm -f /root/split_qwen_hybrid.py
+y
+from pathlib import Path
+from collections import Counter
+
+import onnx
+from onnx import helper, shape_inference
+
+# Configuration
+MODEL_DIR = Path("/root/Qwen3-4B-ONNX-INT4")
+MODEL_PATH = MODEL_DIR / "model.o(venv) root@imx95evk:~/eiq_genai_flow# 
+model = onnx.load(
+    str(MODEL_PATH),
+    load_external_data=False
+)
+
+graph = model.graph
+
+producers = {
+    output: node
+    for node in graph.node
+    for output in node.output
+    if output
+}
+
+initializers = {
+    tensor.name: tensor
+    for tensor in graph.initializer
+}
+
+original_inputs = {
+    value.name: value
+    for value in graph.input
+}
+
+value_info = {
+    value.name: value
+    for value in (
+        list(graph.input)
+        + list(graph.output)
+        + list(graph.value_info)
+    )
+(venv) root@imx95evk:~/eiq_genai_flow# cat > /root/split_qwen_hybrid.py <<'PY'
+LIT_LAYER}/input_layernorm/SkipLayerNorm"
+    ),
+    None
+)
+
+if boundary_node is None:
+    raise RuntimeError("Layer boundary not found")
+
+boundary = list(boundary_n> #!/usr/bin/env python3
+in value_info for name in boundary):
+    print("Inferring tensor shapes...", flush=True)
+
+    inferred = shape_inference.infer_shapes(
+        model,
+        strict_mode=False,
+        data_prop=False
+    )
+
+    for value in (
+        list(inferred.graph.input)
+        + list(inferred.graph.output)
+        + list(inferred.graph.value_info)
+    ):
+        value_info[value.name] = value
+
+for name in boundary:
+    if name not in value_info:
+        raise RuntimeError(
+            f"Missing tensor metadata: {name}"
+        )
+
+    if not valu> 
+tensor type: {name}"
+        )
+
+
+def collect_dependencies(targets, blocked=None):
+    if blocked is None:
+        blocked = set()
+
+    nodes = set()
+    inputs = set()
+    weights = set()
+
+    visited = set()
+    stack = list(targets)
+
+    while stack:
+        name = stack.pop()
+
+        if not name or name in visited:
+            continue
+
+        visited.add(name)
+
+        if name in blocked:
+            inputs.add(name)
+
+        elif name in initializers:
+            weights.add(name)
+
+        elif name in producers:
+            no> import copy
+.input)
+
+        elif name in original_inputs:
+            inputs.add(name)
+
+        else:
+            raise RuntimeError(
+                f"Unknown tensor dependency: {name}"
+            )
+
+    return nodes, inputs, weights
+
+
+# Prefix outputs: residual boundary + its KV cache.
+prefix_outputs = boundary + [
+    f"present.{i}.{kind}"
+    for i in range(SPLIT_LAYER)
+    for kind in ("key", "value")
+]
+
+# Suffix outputs: logits + remaining KV cache.
+suffix_outputs = ["logits"] + [
+    f"present.{i}.{> from pathlib import Path
+")
+]
+
+prefix_nodes, prefix_inputs, prefix_weights = (
+    collect_dependencies(pr> from collections import Counter
+ncies(
+        suffix_outputs,
+        blocked=set(boundary)
+    )
+)
+
+shared = prefix_nodes & suffix_nodes
+
+print(
+    "Shared computation nodes:",
+    len(shared),
+    flush=True
+)
+
+
+def make_value_info(name):
+    if name not in value_info:
+        raise RuntimeError(
+            f"Missing ValueInfo for {name}"
+        )
+
+    return copy.deepcopy(value_info[name])
+
+
+def build_model(filename, selected_nodes, inputs, weights, outputs):
+
+    nodes = [
+        copy.deepcopy(node)
+        for node i> 
+    value.name
+        for value in graph.input
+        if value.name in inputs
+    ]
+
+    input_names += [
+        name for name in boundary
+        if name in inputs and name not in input_names
+    ]
+
+    graph_inputs = [
+        make_value_info(name)
+        for name in input_names
+    ]
+
+    graph_outputs = [
+        make_> import onnx
+> from onnx import helper, shape_inference
+> 
+> # Configuration
+> MODEL_DIR = Path("/root/Qwen3-4B-ONNX-INT4")
+> MODEL_PATH = MODEL_DIR / "model.onnx"
+> SPLIT_LAYER = 4
+> TOTAL_LAYERS = 36
+> 
+> print("Loading ONNX graph...", flush=True)
+> 
+> model = onnx.load(
+>     str(MODEL_PATH),
+>     load_external_data=False
+> )
+> 
+> graph = model.graph
+> 
+> producers = {
+>     output: node
+>     for node in graph.node
+>     for output in node.output
+>     if output
+> }
+> 
+> initializers = {
+>     tensor.name: tensor
+>     for tensor in graph.initializer
+> }
+> 
+> original_inputs = {
+>     value.name: value
+>     for value in graph.input
+> }
+> 
+> value_info = {
+>     value.name: value
+>     for value in (
+>         list(graph.input)
+>         + list(graph.output)
+>         + list(graph.value_info)
+>     )
+> }
+> 
+> # Find the actual two-tensor residual boundary.
+> boundary_node = next(
+>     (
+>         node for node in graph.node
+>         if node.name ==
+>         f"/model/layers.{SPLIT_LAYER}/input_layernorm/SkipLayerNorm"
+>     ),
+>     None
+> )
+> 
+> if boundary_node is None:
+>     raise RuntimeError("Layer boundary not found")
+> 
+> boundary = list(boundary_node.input[:2])
+> 
+> print("Boundary:", boundary, flush=True)
+> 
+> # Infer intermediate tensor metadata if necessary.
+> if any(name not in value_info for name in boundary):
+>     print("Inferring tensor shapes...", flush=True)
+> 
+>     inferred = shape_inference.infer_shapes(
+>         model,
+>         strict_mode=False,
+>         data_prop=False
+>     )
+> 
+>     for value in (
+>         list(inferred.graph.input)
+>         + list(inferred.graph.output)
+>         + list(inferred.graph.value_info)
+>     ):
+>         value_info[value.name] = value
+> 
+> for name in boundary:
+>     if name not in value_info:
+>         raise RuntimeError(
+>             f"Missing tensor metadata: {name}"
+>         )
+> 
+>     if not value_info[name].HasField("type"):
+>         raise RuntimeError(
+>             f"Missing tensor type: {name}"
+>         )
+> 
+> 
+> def collect_dependencies(targets, blocked=None):
+>     if blocked is None:
+>         blocked = set()
+> 
+>     nodes = set()
+>     inputs = set()
+>     weights = set()
+> 
+>     visited = set()
+>     stack = list(targets)
+> 
+>     while stack:
+>         name = stack.pop()
+> 
+>         if not name or name in visited:
+>             continue
+> 
+>         visited.add(name)
+> 
+>         if name in blocked:
+>             inputs.add(name)
+> 
+>         elif name in initializers:
+>             weights.add(name)
+> 
+>         elif name in producers:
+>             node = producers[name]
+>             nodes.add(id(node))
+>             stack.extend(node.input)
+> 
+>         elif name in original_inputs:
+>             inputs.add(name)
+> 
+>         else:
+>             raise RuntimeError(
+>                 f"Unknown tensor dependency: {name}"
+>             )
+> 
+>     return nodes, inputs, weights
+> 
+> 
+> # Prefix outputs: residual boundary + its KV cache.
+> prefix_outputs = boundary + [
+>     f"present.{i}.{kind}"
+>     for i in range(SPLIT_LAYER)
+>     for kind in ("key", "value")
+> ]
+> 
+> # Suffix outputs: logits + remaining KV cache.
+> suffix_outputs = ["logits"] + [
+>     f"present.{i}.{kind}"
+>     for i in range(SPLIT_LAYER, TOTAL_LAYERS)
+>     for kind in ("key", "value")
+> ]
+> 
+> prefix_nodes, prefix_inputs, prefix_weights = (
+>     collect_dependencies(prefix_outputs)
+> )
+> 
+> suffix_nodes, suffix_inputs, suffix_weights = (
+>     collect_dependencies(
+>         suffix_outputs,
+>         blocked=set(boundary)
+>     )
+> )
+> 
+> shared = prefix_nodes & suffix_nodes
+> 
+> print(
+>     "Shared computation nodes:",
+>     len(shared),
+>     flush=True
+> )
+> 
+> 
+> def make_value_info(name):
+>     if name not in value_info:
+>         raise RuntimeError(
+>             f"Missing ValueInfo for {name}"
+>         )
+> 
+>     return copy.deepcopy(value_info[name])
+> 
+> 
+> def build_model(filename, selected_nodes, inputs, weights, outputs):
+> 
+>     nodes = [
+>         copy.deepcopy(node)
+>         for node in graph.node
+>         if id(node) in selected_nodes
+>     ]
+> 
+>     input_names = [
+>         value.name
+>         for value in graph.input
+>         if value.name in inputs
+>     ]
+> 
+>     input_names += [
+>         name for name in boundary
+>         if name in inputs and name not in input_names
+>     ]
+> 
+>     graph_inputs = [
+>         make_value_info(name)
+>         for name in input_names
+>     ]
+> 
+>     graph_outputs = [
+>         make_value_info(name)
+>         for name in outputs
+>     ]
+> 
+>     selected_weights = [
+>         copy.deepcopy(tensor)
+>         for tensor in graph.initializer
+>         if tensor.name in weights
+>     ]
+> 
+>     produced = {
+>         output
+>         for node in nodes
+>         for output in node.output
+>         if output
+>     }
+> 
+>     extra_info = [
+>         copy.deepcopy(value)
+>         for value in graph.value_info
+>         if value.name in produced
+>         and value.name not in outputs
+>     ]
+> 
+>     new_graph = helper.make_graph(
+>         nodes,
+>         filename,
+>         graph_inputs,
+>         graph_outputs,
+>         initializer=selected_weights,
+>         value_info=extra_info
+>     )
+> 
+>     new_model = copy.deepcopy(model)
+> 
+>     new_model.graph.CopyFrom(new_graph)
+> 
+>     # The external data file is already a regular file
+>     # in MODEL_DIR. No symlinks or hard links are needed.
+>     for tensor in new_model.graph.initializer:
+>         for entry in tensor.external_data:
+>             if entry.key == "location":
+>                 location = Path(entry.value)
+> 
+>                 if (
+>                     location.is_absolute()
+>                     or ".." in location.parts
+>                     or not (MODEL_DIR / location).is_file()
+>                 ):
+>                     raise RuntimeError(
+>                         f"Invalid external data: {entry.value}"
+>                     )
+> 
+>     output_path = MODEL_DIR / filename
+> 
+>     onnx.save_model(
+>         new_model,
+>         str(output_path),
+>         save_as_external_data=False
+>     )
+> 
+>     print("Checking:", filename, flush=True)
+> 
+>     onnx.checker.check_model(str(output_path))
+> 
+>     counts = Counter(
+>         node.op_type for node in nodes
+>     )
+> 
+>     print(
+>         f"{filename}: "
+>         f"{len(nodes)} nodes, "
+>         f"{counts['MatMulNBits']} MatMulNBits, "
+>         f"{len(graph_inputs)} inputs, "
+>         f"{len(graph_outputs)} outputs",
+>         flush=True
+>     )
+> 
+>     return output_path
+> 
+> 
+> prefix_path = build_model(
+>     "qwen_npu_prefix.onnx",
+>     prefix_nodes,
+>     prefix_inputs,
+>     prefix_weights,
+>     prefix_outputs
+> )
+> 
+> suffix_path = build_model(
+>     "qwen_cpu_suffix.onnx",
+>     suffix_nodes,
+>     suffix_inputs,
+>     suffix_weights,
+>     suffix_outputs
+> )
+> 
+> print("\nSUCCESS: Both ONNX graphs created.")
+> print("NPU model:", prefix_path)
+> print("CPU model:", suffix_path)
+> print("Original model preserved.")
+> PY
+(venv) root@imx95evk:~/eiq_genai_flow# python3 -m py_compile /root/split_qwen_hybrid.py
+
+(venv) root@imx95evk:~/eiq_genai_flow# python3 /root/split_qwen_hybrid.py
+Loading ONNX graph...
+Boundary: ['/model/layers.3/post_attention_layernorm/output_3', '/model/layers.3/mlp/down_proj/MatMul/output_0']
+Shared computation nodes: 11
+Checking: qwen_npu_prefix.onnx
+Traceback (most recent call last):
+  File "/root/split_qwen_hybrid.py", line 287, in <module>
+    prefix_path = build_model(
+        "qwen_npu_prefix.onnx",
+    ...<3 lines>...
+        prefix_outputs
+    )
+  File "/root/split_qwen_hybrid.py", line 269, in build_model
+    onnx.checker.check_model(str(output_path))
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/root/eiq_genai_flow/venv/lib/python3.14/site-packages/onnx/checker.py", line 147, in check_model
+    C.check_model_path(
+    ~~~~~~~~~~~~~~~~~~^
+        os.fspath(model),
+        ^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        check_custom_domain,
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+onnx.onnx_cpp2py_export.checker.ValidationError: No Op registered for SimplifiedLayerNormalization with domain_version of 21
+
+==> Context: Bad node spec for node. Name: /model/layers.0/input_layernorm/LayerNorm OpType: SimplifiedLayerNormalization
+(venv) root@imx95evk:~/eiq_genai_flow# ls -lh /root/Qwen3-4B-ONNX-INT4/*.onnx
+-rw-r--r-- 1 root root 410K Nov 11 19:36 /root/Qwen3-4B-ONNX-INT4/model.onnx
+-rw-r--r-- 1 root root  44K Nov 11 20:25 /root/Qwen3-4B-ONNX-INT4/qwen_npu_prefix.onnx
+(venv) root@imx95evk:~/eiq_genai_flow# 
+CTRL-A Z for help | 115200 8N1 | NOR | Minicom 2.8 | VT102 | Offline | ttyACM0                                                                                                                             
+

@@ -1,0 +1,147 @@
+x0000aaaaaaac0df0 in ?? ()
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# gdb -batch   -ex run   -ex "bt 15"   --args ./onnxruntime_perf_test   -e neutron   -I   -m times   -r 1   tests/testdata/matmul_integer_to_float_int8_bias.onnx^C
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# ./onnxruntime_perf_test -e neutron
+Segmentation fault         (core dumped) ./onnxruntime_perf_test -e neutron
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# echo "=== BOARD / DTB ==="
+e === BOARD / DTB ===
+'*neutron*' 2>/dev/null | head -20
+
+echo "=== NPU ==="
+ls -l /dev/neutron0
+dmesg | grep -Ei 'neutron|firmware' | tail -20
+
+echo "=== DEMO FILES ==="
+find /usr/bin/tensorflow-lite* /usr/bin/litert* /usr/share \
+  -type f \( \
+    -name '*.tflite' -o \
+    -name 'grace_hopper.bmp' -o \
+    -name 'labels.txt' \
+  \) 2>/dev/null | head -40
+
+echo "=== DEMO HELP ==="
+label_image_litert --help 2>&1 | head -50root@imx95evk:/usr/bin/onnxruntime-1.24.3# cat /proc/device-tree/model
+NXP FRDM-IMX95root@imx95evk:/usr/bin/onnxruntime-1.24.3# find /proc/device-tree -iname '*neutron*' 2>/dev/null | head -20
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# echo "=== NPU ==="
+=== NPU ===
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# ls -l /dev/neutron0
+crw-rw---- 1 root video 509, 0 Mar 13 15:43 /dev/neutron0
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# dmesg | grep -Ei 'neutron|firmware' | tail -20
+[    0.000000] psci: PSCIv1.1 detected in firmware.
+[    1.396470] platform 4ab00004.imx95-neutron: Adding to iommu group 5
+[    1.765748] arm-scmi arm-scmi.0.auto: SCMI Protocol v2.1 'NXP:IMX' Firmware version 0x3a5
+[    1.870178] input: scmi_dev.11 as /devices/platform/firmware:scmi/arm-scmi.0.auto/scmi_dev.11/input/input0
+[    2.067246] fsl-se secure-enclave-0: i.MX secure-enclave: hsm0 interface to firmware, configured.
+[    2.079894] fsl-se secure-enclave-1: i.MX secure-enclave: v2x_dbg0 interface to firmware, configured.
+[    2.090065] fsl-se secure-enclave-2: i.MX secure-enclave: v2x_sv0 interface to firmware, configured.
+[    2.100007] fsl-se secure-enclave-3: i.MX secure-enclave: v2x_she0 interface to firmware, configured.
+[    2.110037] fsl-se secure-enclave-4: i.MX secure-enclave: v2x_sg0 interface to firmware, configured.
+[    2.119817] fsl-se secure-enclave-5: i.MX secure-enclave: v2x_sg1 interface to firmware, configured.
+[    2.147479] remoteproc remoteproc0: neutron-rproc is available
+[    4.344805] neutron 4ab00004.imx95-neutron: created neutron device, name=neutron0
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# find /usr/bin/tensorflow-lite-2.19.0 \
+ \
+  2>/dev/null | head -30>   -type f \( -name '*.bmp' -o -name '*.txt' \) \
+>   2>/dev/null | head -30
+/usr/bin/tensorflow-lite-2.19.0/examples/labels.txt
+/usr/bin/tensorflow-lite-2.19.0/examples/grace_hopper.bmp
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# label_image_litert \
+t_v1_1.0_224_quant.tflite \
+  --image=/DOSYANIN/TAM/YOLU/grace_hopper.bmp \
+  --labels=/DOSYANIN/TAM/YOLU/labels.txt \
+  --verbose=true>   --accelerator=npu \
+>   --graph=/usr/bin/tensorflow-lite-2.19.0/examples/mobilenet_v1_1.0_224_quant.tflite \
+>   --image=/DOSYANIN/TAM/YOLU/grace_hopper.bmp \
+>   --labels=/DOSYANIN/TAM/YOLU/labels.txt \
+>   --verbose=true
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1773422558.641693    1005 label_image_litert.cc:98] Cannot open image: /DOSYANIN/TAM/YOLU/grace_hopper.bmp
+E0000 00:00:1773422558.645396    1005 label_image_litert.cc:593] Failed to load image
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# label_image_litert \
+v1_1.0_224_quant.tflite \
+  --image=/usr/bin/tensorflow-lite-2.19.0/examples/grace_hopper.bmp \
+  --labels=/usr/bin/tensorflow-lite-2.19.0/examples/labels.txt \
+  --verbose=true>   --accelerator=npu \
+>   --graph=/usr/bin/tensorflow-lite-2.19.0/examples/mobilenet_v1_1.0_224_quant.tflite \
+>   --image=/usr/bin/tensorflow-lite-2.19.0/examples/grace_hopper.bmp \
+>   --labels=/usr/bin/tensorflow-lite-2.19.0/examples/labels.txt \
+>   --verbose=true
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1773422742.676041    1012 label_image_litert.cc:433] Loaded image /usr/bin/tensorflow-lite-2.19.0/examples/grace_hopper.bmp (517x606)
+INFO: [environment.cc:29] Creating LiteRT environment with options
+INFO: [accelerator_registry.cc:51] RegisterAccelerator: ptr=0xaaaac93c8e10, name=NpuAccelerator
+INFO: [auto_registration.cc:63] NPU accelerator registered.
+VERBOSE: [auto_registration.cc:129] Loading GPU accelerator(libLiteRtGpuAccelerator.so).
+VERBOSE: [auto_registration.cc:145] Failed to load GPU accelerator(libLiteRtGpuAccelerator.so): kLiteRtStatusErrorDynamicLoading, ERROR: [/sources/litert-2.1.0/litert/runtime/accelerators/auto_registratio
+n.cc:182]
+\u2514 Could not load shared library libLiteRtGpuAccelerator.so: libLiteRtGpuAccelerator.so: cannot open shared object file: No such file or directory..
+VERBOSE: [auto_registration.cc:129] Loading GPU accelerator(libLiteRtWebGpuAccelerator.so).
+VERBOSE: [auto_registration.cc:145] Failed to load GPU accelerator(libLiteRtWebGpuAccelerator.so): kLiteRtStatusErrorDynamicLoading, ERROR: [/sources/litert-2.1.0/litert/runtime/accelerators/auto_registra
+tion.cc:182]
+\u2514 Could not load shared library libLiteRtWebGpuAccelerator.so: libLiteRtWebGpuAccelerator.so: cannot open shared object file: No such file or directory..
+VERBOSE: [auto_registration.cc:129] Loading GPU accelerator(libLiteRtOpenClAccelerator.so).
+VERBOSE: [auto_registration.cc:145] Failed to load GPU accelerator(libLiteRtOpenClAccelerator.so): kLiteRtStatusErrorDynamicLoading, ERROR: [/sources/litert-2.1.0/litert/runtime/accelerators/auto_registra
+tion.cc:182]
+\u2514 Could not load shared library libLiteRtOpenClAccelerator.so: libLiteRtOpenClAccelerator.so: cannot open shared object file: No such file or directory..
+VERBOSE: [auto_registration.cc:129] Loading GPU accelerator(libLiteRtVulkanAccelerator.so).
+VERBOSE: [auto_registration.cc:145] Failed to load GPU accelerator(libLiteRtVulkanAccelerator.so): kLiteRtStatusErrorDynamicLoading, ERROR: [/sources/litert-2.1.0/litert/runtime/accelerators/auto_registra
+tion.cc:182]
+\u2514 Could not load shared library libLiteRtVulkanAccelerator.so: libLiteRtVulkanAccelerator.so: cannot open shared object file: No such file or directory..
+WARNING: [auto_registration.cc:158] GPU accelerator could not be loaded and registered.
+INFO: [accelerator_registry.cc:51] RegisterAccelerator: ptr=0xaaaac93c94d0, name=CpuAccelerator
+INFO: [auto_registration.cc:168] CPU accelerator registered.
+I0000 00:00:1773422742.680276    1012 label_image_litert.cc:444] Model: /usr/bin/tensorflow-lite-2.19.0/examples/mobilenet_v1_1.0_224_quant.tflite
+INFO: [magic_number_utils.cc:581] No magic number configs found.
+INFO: [compiled_model.cc:503] Flatbuffer model initialized directly from incoming litert model.
+INFO: [compiled_model.cc:602] Apply accelerator NpuAccelerator
+VERBOSE: [dynamic_loading.cc:83] Found shared library: /usr/lib/libLiteRtDispatch_NxpNeutron.so
+INFO: [litert_dispatch.cc:125] Loading shared library: /usr/lib/libLiteRtDispatch_NxpNeutron.so
+INFO: [dispatch_delegate.cc:172] Dispatch API vendor ID: NxpNeutron
+INFO: [dispatch_delegate.cc:176] Dispatch API build ID: 1.0.0
+INFO: [dispatch_delegate.cc:180] Dispatch API version: 0.1.0
+INFO: [dispatch_delegate.cc:192] Dispatch API capabilities: 1
+INFO: [compiled_model.cc:602] Apply accelerator CpuAccelerator
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: [compiled_model.cc:826] Tensor input is shared with CPU.
+
+INFO: [tensor_buffer.cc:125] Created tensor buffer 0xaaaac93e9be0 of type HostMemory
+INFO: [tensor_buffer.cc:125] Created tensor buffer 0xaaaac99fa8d0 of type HostMemory
+I0000 00:00:1773422743.407607    1012 label_image_litert.cc:473] Input dims: [1,224,224,3]
+I0000 00:00:1773422743.415758    1012 label_image_litert.cc:500] Input element type: uint8
+INFO: [compiled_model.cc:995] Registering input tensor from TfliteTensor 0xaaaac93f27d0 to LiteRtTensorBuffer 0xaaaac93e9be0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering output tensor from TfliteTensor 0xaaaac93f2760 to LiteRtTensorBuffer 0xaaaac99fa8d0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering input tensor from TfliteTensor 0xaaaac93f27d0 to LiteRtTensorBuffer 0xaaaac93e9be0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering output tensor from TfliteTensor 0xaaaac93f2760 to LiteRtTensorBuffer 0xaaaac99fa8d0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering input tensor from TfliteTensor 0xaaaac93f27d0 to LiteRtTensorBuffer 0xaaaac93e9be0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering output tensor from TfliteTensor 0xaaaac93f2760 to LiteRtTensorBuffer 0xaaaac99fa8d0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering input tensor from TfliteTensor 0xaaaac93f27d0 to LiteRtTensorBuffer 0xaaaac93e9be0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering output tensor from TfliteTensor 0xaaaac93f2760 to LiteRtTensorBuffer 0xaaaac99fa8d0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering input tensor from TfliteTensor 0xaaaac93f27d0 to LiteRtTensorBuffer 0xaaaac93e9be0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering output tensor from TfliteTensor 0xaaaac93f2760 to LiteRtTensorBuffer 0xaaaac99fa8d0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering input tensor from TfliteTensor 0xaaaac93f27d0 to LiteRtTensorBuffer 0xaaaac93e9be0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering output tensor from TfliteTensor 0xaaaac93f2760 to LiteRtTensorBuffer 0xaaaac99fa8d0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering input tensor from TfliteTensor 0xaaaac93f27d0 to LiteRtTensorBuffer 0xaaaac93e9be0 of type HostMemory
+INFO: [compiled_model.cc:995] Registering output tensor from TfliteTensor 0xaaaac93f2760 to LiteRtTensorBuffer 0xaaaac99fa8d0 of type HostMemory
+Inference: 5 run(s), avg 116.480 ms (min 116.385, max 116.672)
+I0000 00:00:1773422744.237895    1012 label_image_litert.cc:542] Output element type: uint8, classes=1001
+I0000 00:00:1773422744.238031    1012 label_image_litert.cc:250]  --- top 5 results ---
+0.792157: 653  military uniform
+0.090196: 907  Windsor tie
+0.023529: 458  bow tie
+0.011765: 668  mortarboard
+0.011765: 466  bulletproof vest
+I0000 00:00:1773422744.238103    1012 label_image_litert.cc:561] Done.
+INFO: [tensor_buffer.cc:132] Destroying tensor buffer 0xaaaac99fa8d0 of type HostMemory
+INFO: [tensor_buffer.cc:132] Destroying tensor buffer 0xaaaac93e9be0 of type HostMemory
+INFO: [accelerator_registry.cc:40] DestroyAccelerator: ptr=0xaaaac93c8e10, name=NpuAccelerator
+INFO: [accelerator_registry.cc:40] DestroyAccelerator: ptr=0xaaaac93c94d0, name=CpuAccelerator
+root@imx95evk:/usr/bin/onnxruntime-1.24.3# 
+CTRL-A Z for help | 115200 8N1 | NOR | Minicom 2.8 | VT102 | Offline | ttyACM0                                                                                                                             
+

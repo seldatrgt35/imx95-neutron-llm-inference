@@ -1,0 +1,96 @@
+ ^C
+root@imx95evk:~# root@imx95evk:~/eiq_genai_flow# root@imx95evk:~/eiq_genai_flow# ^C
+root@imx95evk:~/eiq_genai_flow# === PROJECT FILES ===
+root@imx95evk:~/eiq_genai_flow# total 208K
+drwxr-xr-x 6 root root 4.0K Nov 11 12:54 .
+drwx------ 6 root root 4.0K Nov 11 12:54 ..
+-rw-r--r-- 1 root root  486 Nov 11 12:54 .gitattributes
+-rw-r--r-- 1 root root  174 Nov 11 12:54 .gitignore
+-rw-r--r-- 1 root root  24K Nov 11 12:54 LICENSE
+-rw-r--r-- 1 root root  63K Nov 11 12:54 README.md
+-rw-r--r-- 1 root root  13K Nov 11 12:54 ROS_README.md
+-rw-r--r-- 1 root root    5 Nov 11 12:54 VERSION
+drwxr-xr-x 2 root root 4.0K Nov 11 12:54 assets
+-rwxr-xr-x 1 root root  21K Nov 11 12:54 install.sh
+-rwxr-xr-x 1 root root 2.1K Nov 11 12:54 install_ROS.sh
+-rw-r--r-- 1 root root 1.6K Nov 11 12:54 pyproject.toml
+-rw-r--r-- 1 root root  26K Nov 11 12:54 ros_node.py
+-rw-r--r-- 1 root root 4.7K Nov 11 12:54 setup.py
+drwxr-xr-x 4 root root 4.0K Nov 11 12:58 src
+drwxr-xr-x 6 root root 4.0K Nov 11 13:15 venv
+drwxr-xr-x 4 root root 4.0K Nov 11 12:54 wheels
+root@imx95evk:~/eiq_genai_flow# root@imx95evk:~/eiq_genai_flow# === MODEL FILES ===
+root@imx95evk:~/eiq_genai_flow# > > root@imx95evk:~/eiq_genai_flow# root@imx95evk:~/eiq_genai_flow# === MODEL CONFIGURATION ===
+root@imx95evk:~/eiq_genai_flow# > > ./venv/lib64/python3.14/site-packages/onnx/checker.py:147:        C.check_model_path(
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:68:            model_path = os.path.join(temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:69:            onnx.save_model(proto, model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:70:            loaded_proto = onnx.load_model(model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:76:            model_path = pathlib.Path(temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:77:            onnx.save_model(proto, model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:78:            loaded_proto = onnx.load_model(model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:113:            model_path = os.path.join(temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:114:            onnx.save_tensor(proto, model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:115:            loaded_proto = onnx.load_tensor(model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:122:            model_path = pathlib.Path(temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:123:            onnx.save_tensor(proto, model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:124:            loaded_proto = onnx.load_tensor(model_path, format=self.format)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:132:            model_path = os.path.join(temp_dir, "model.textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:134:            onnx.save_model(proto, model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:135:            loaded_proto = onnx.load_model(model_path, format="textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:141:            model_path = os.path.join(temp_dir, "model.textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:142:            onnx.save_model(proto, model_path, format="textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:144:            loaded_proto = onnx.load_model(model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:150:            model_path = os.path.join(temp_dir, "model.textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:152:            onnx.save_model(proto, model_path, format="protobuf")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:153:            loaded_proto = onnx.load_model(model_path, format="protobuf")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:157:                onnx.load_model(model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:162:            model_path = os.path.join(temp_dir, "model.protobuf")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:163:            onnx.save_model(proto, model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:167:                onnx.load_model(model_path, format="textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:169:            loaded_proto = onnx.load_model(model_path, format="protobuf")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:178:            model_path = os.path.join(temp_dir, "model")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:179:            onnx.save_model(proto, model_path, format="textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:183:                onnx.load_model(model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:185:            loaded_proto = onnx.load_model(model_path, format="textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:194:            model_path = os.path.join(temp_dir, "model")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:195:            onnx.save_model(proto, model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:198:                onnx.load_model(model_path, format="textproto")
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:200:            loaded_proto = onnx.load_model(model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/basic_test.py:203:                model_path, format="protobuf"
+./venv/lib64/python3.14/site-packages/onnx/test/serialization_test.py:72:            model_path = os.path.join(tmpdir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/serialization_test.py:73:            onnx.save_model(model, model_path, format="onnxtext")
+./venv/lib64/python3.14/site-packages/onnx/test/serialization_test.py:76:            with open(model_path, encoding="utf-8") as f:
+./venv/lib64/python3.14/site-packages/onnx/test/serialization_test.py:80:            loaded_model = onnx.load_model(model_path, format="onnxtext")
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:920:        model_path = os.path.join(self.temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:924:            model_path,
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:936:        loaded_model = onnx.load(model_path, load_external_data=False)
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:942:                model_path,
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:963:        model_path = os.path.join(self.temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:967:            model_path,
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:985:            onnx.load(model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:990:        model_path = os.path.join(self.temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:994:            model_path,
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:1011:        loaded_model = onnx.load(model_path, load_external_data=False)
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:1032:        model_path = os.path.join(model_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:1035:            model_path,
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:1047:        loaded_model = onnx.load(model_path, load_external_data=False)
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:1059:        model_path = os.path.join(self.temp_dir, "model.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:1063:            model_path,
+./venv/lib64/python3.14/site-packages/onnx/test/test_external_data.py:1078:            onnx.load(model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/checker_test.py:1113:            unicode_model_path = os.path.join(temp_dir, "\u6a21\u578b\u30e2\u30c7\u30eb\ubaa8\ub378\u2728.onnx")
+./venv/lib64/python3.14/site-packages/onnx/test/checker_test.py:1114:            onnx.save(model, unicode_model_path)
+./venv/lib64/python3.14/site-packages/onnx/test/checker_test.py:1115:            checker.check_model(unicode_model_path, full_check=True)
+./venv/lib64/python3.14/site-packages/onnx/shape_inference.py:74:    model_path: str | os.PathLike,
+./venv/lib64/python3.14/site-packages/onnx/shape_inference.py:86:    if isinstance(model_path, ModelProto):
+./venv/lib64/python3.14/site-packages/onnx/shape_inference.py:92:        model_path = os.fspath(model_path)
+./venv/lib64/python3.14/site-packages/onnx/shape_inference.py:96:            f"incorrect model path type: {type(model_path)}"
+./venv/lib64/python3.14/site-packages/onnx/shape_inference.py:107:        output_path = model_path
+./venv/lib64/python3.14/site-packages/onnx/shape_inference.py:108:    C.infer_shapes_path(model_path, output_path, check_type, strict_mode, data_prop)
+./venv/lib64/python3.14/site-packages/onnx/backend/test/case/node/flexattention.py:70:    where k_idx > q_idx. This pattern is used in Qwen-3, Gemma-3, Llama-3, etc.
+./venv/lib64/python3.14/site-packages/onnx/backend/test/case/node/flexattention.py:459:        """FlexAttention with causal masking score_mod (Qwen-3, Gemma-3, Llama-3 pattern)."""
+./venv/lib64/python3.14/site-packages/onnx/backend/test/stat_coverage.py:163:    model_paths: list[Any] = []
+./venv/lib64/python3.14/site-packages/onnx/backend/test/stat_coverage.py:172:            model_paths.append(model_name)
+./venv/lib64/python3.14/site-packages/onnx/backend/test/stat_coverage.py:175:            model_paths.append(os.path.join(model_dir, "model.onnx"))
+root@imx95evk:~/eiq_genai_flow# 
+\ufffdT~x\ufffd~ Z for help | 115200 8N1 | r\ufffd1\ufffd\ufffd\ufffdB\ufffd\ufffdD\ufffd\ufffd\ufffd\ufffdT\ufffd\ | VT102 | Offline | ttyACM0                                                                                                                             
+

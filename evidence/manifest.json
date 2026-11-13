@@ -1,0 +1,144 @@
+{
+  "assembled_on": "2026-11-13",
+  "provenance_summary": "Historical terminal pastes from this user and the current engineering notes",
+  "records": [
+    {
+      "source_file": "Pasted text(20261110-081607).txt",
+      "source_sha256": "a21364ca4b2074c59e073723e9cc1ae66f60b3ee6462d922533fe7ce5e1bb4df",
+      "source_size_bytes": 12833,
+      "public_evidence": "evidence/terminal/20261110-081607-boot-weston-console.log",
+      "public_evidence_sha256": "2e9d3c6225fcfcdced53ce549c967f1c65eaa5191edf80ccf2f61dc98d9a2c88",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261110-124019).txt",
+      "source_sha256": "520e16594c4f9f281b02c4cb605f5759db2da42ecd30ba18b68dcb9ac6c38daa",
+      "source_size_bytes": 12661,
+      "public_evidence": "evidence/terminal/20261110-124019-host-vulkan-cross-compilation.log",
+      "public_evidence_sha256": "520e16594c4f9f281b02c4cb605f5759db2da42ecd30ba18b68dcb9ac6c38daa",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261110-140415).txt",
+      "source_sha256": "5d9f0472991a3dab9c8c8f33177a7c8d4aed9c1967980e80cf760299e978d373",
+      "source_size_bytes": 13681,
+      "public_evidence": "evidence/terminal/20261110-140415-onnxruntime-matmul-cpu-fallback.log",
+      "public_evidence_sha256": "5d9f0472991a3dab9c8c8f33177a7c8d4aed9c1967980e80cf760299e978d373",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261110-161034).txt",
+      "source_sha256": "10197e7d455f46c5e09c0757c771dbca1815e950ae575afebb7cfc6d65682b07",
+      "source_size_bytes": 60667,
+      "public_evidence": null,
+      "public_evidence_sha256": null,
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "not redistributed",
+      "notes": [
+        "Excluded: vendor license page copy, no original project measurements."
+      ]
+    },
+    {
+      "source_file": "Pasted text(20261111-064922).txt",
+      "source_sha256": "4822f498f9a453e14a3e235ec08b8a3127b6534b84cdf0dfd84b67cfd68b4e2a",
+      "source_size_bytes": 13384,
+      "public_evidence": "evidence/terminal/20261111-064922-neutron-driver-weight-packing-investigation.log",
+      "public_evidence_sha256": "390d01dbb719cef3e6510139e9c729897a86506d264cf59dc58cd8b61e25c2f0",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": [
+        "Truncated before third-party NXP Python source code printed by sed."
+      ]
+    },
+    {
+      "source_file": "Pasted text(20261111-072111).txt",
+      "source_sha256": "65c47c0471951468928b19c39c02527797385c34f06dcb462a5931f7d42af0f5",
+      "source_size_bytes": 16915,
+      "public_evidence": "evidence/terminal/20261111-072111-onnxruntime-perf-test-help.log",
+      "public_evidence_sha256": "65c47c0471951468928b19c39c02527797385c34f06dcb462a5931f7d42af0f5",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261111-082645).txt",
+      "source_sha256": "b7b1099d3f0d83485594de4b6e31163315361cc9776e9fbcc64136dd68031cf1",
+      "source_size_bytes": 11352,
+      "public_evidence": "evidence/terminal/20261111-082645-litert-npu-mobilenet-validation.log",
+      "public_evidence_sha256": "df4d55b149881c0aa849148997b9cca10db66e9a26e07213665621645d1abccc",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261112-072012).txt",
+      "source_sha256": "c59646af58a389ce8d1f9051ed2dd183e0e2ad2a6c424e41992ba6f9bb192700",
+      "source_size_bytes": 10462,
+      "public_evidence": "evidence/terminal/20261112-072012-model-search-notes.log",
+      "public_evidence_sha256": "465ff7c319161e79a6c4a5af567b334f4dccd4875fbf0b1955df608b8040c8ac",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261112-072358).txt",
+      "source_sha256": "429053dc981381298020c8f556d89c6517ace1611447af93507e52610c3bdc48",
+      "source_size_bytes": 51493,
+      "public_evidence": "evidence/terminal/20261112-072358-model-files-inventory.log",
+      "public_evidence_sha256": "9ca452eea2f7a6520a6fcd509912a321c5267168bbdd615ebe1a159792a05373",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261112-083614).txt",
+      "source_sha256": "4c57e2ec2bd5f38723dee9cb94a8e2609b0b9c36c809e602f5712db81d4038d6",
+      "source_size_bytes": 11013,
+      "public_evidence": "evidence/terminal/20261112-083614-eiq-olive-qwen-recipe-investigation.log",
+      "public_evidence_sha256": "2eff83c415bffba6dcaace10eb52b168842c5c10cfaa137dabc77955bf3d28f5",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": [
+        "Third-party Olive example Python code omitted; recipe JSON inspection retained."
+      ]
+    },
+    {
+      "source_file": "Pasted text(20261112-113926).txt",
+      "source_sha256": "3fcdf6d89a92efe9e569d1bcd8338cb1e7326350b39daa4d8bcaeaa6e0bdd859",
+      "source_size_bytes": 120995,
+      "public_evidence": "evidence/terminal/20261112-113926-qwen-ort-verbose-253-neutron-nodes.log",
+      "public_evidence_sha256": "fdcdecc435f980d29b66c1d7fcc4197f2b49d7c435752abfb65eb897302c598f",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    },
+    {
+      "source_file": "Pasted text(20261111-120015).txt",
+      "source_sha256": "3ec1dad10528e42d02f7c437dea80d4f56165b24be4f1e99ab3bdd925ab53ef4",
+      "source_size_bytes": 10755,
+      "public_evidence": null,
+      "public_evidence_sha256": null,
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "not redistributed",
+      "notes": [
+        "Excluded: verbatim grep output from vendor README; findings paraphrased with upstream URL."
+      ]
+    },
+    {
+      "source_file": "Pasted text(20261112-122647).txt",
+      "source_sha256": "a79992c8d2302cd699296442bdcf024b99d0398e176ddf6520ba0d6749142cdf",
+      "source_size_bytes": 13333,
+      "public_evidence": "evidence/terminal/20261112-122647-hybrid-graph-partitioning-errors.log",
+      "public_evidence_sha256": "0b17973c5c4bb57b18e1d6074188295b0e5643583a303a1b290f365e4907b289",
+      "recorded_provenance": "Prior user-provided terminal paste, retrieved from conversation file library",
+      "treatment": "sanitized terminal transcription",
+      "notes": []
+    }
+  ]
+}

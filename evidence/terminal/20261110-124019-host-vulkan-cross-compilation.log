@@ -1,0 +1,173 @@
+dev@dev-HP-EliteBook-840-G6:~/edge-ai/llama.cpp$ find ~/edge-ai/shaderc -type d -name 'spirv-headers' | head
+/home/dev/edge-ai/shaderc/build/third_party/spirv-headers
+/home/dev/edge-ai/shaderc/third_party/spirv-headers
+dev@dev-HP-EliteBook-840-G6:~/edge-ai/llama.cpp$ ls ~/edge-ai/shaderc/third_party/spirv-headers
+BUILD.bazel  CMakeLists.txt      include   MODULE.bazel  SECURITY.md  WORKSPACE
+BUILD.gn     CODE_OF_CONDUCT.md  LICENSE   README.md     tests
+cmake        CONTRIBUTING.md     LICENSES  REUSE.toml    tools
+dev@dev-HP-EliteBook-840-G6:~/edge-ai/llama.cpp$ cd ~/edge-ai/shaderc/third_party/spirv-headers
+
+cmake -S . -B build-imx95 \
+  -DCMAKE_INSTALL_PREFIX=/usr \
+  -DCMAKE_TOOLCHAIN_FILE=/home/dev/edge-ai/imx95-toolchain.cmake
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/aarch64-linux-gnu-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/aarch64-linux-gnu-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dev/edge-ai/shaderc/third_party/spirv-headers/build-imx95
+dev@dev-HP-EliteBook-840-G6:~/edge-ai/shaderc/third_party/spirv-headers$ cmake --install build-imx95 \
+  --prefix ~/edge-ai/imx95-sysroot/usr
+-- Install configuration: ""
+-- Up-to-date: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv
+-- Up-to-date: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.nonsemantic.shader.debuginfo.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.hpp
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.cs
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.hpp11
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.arm.experimental-ml-operations.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.tosa.001000.1.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/org
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/org/khronos
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/org/khronos/spv
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/org/khronos/spv/Spv.java
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/AMD_shader_ballot.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.spv-amd-shader-trinary-minmax.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/AMD_shader_explicit_vertex_parameter.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.opencl.std.100.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/OpenCL.std.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.spv-amd-shader-explicit-vertex-parameter.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.bf
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/NonSemanticDebugBreak.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.debuginfo.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.nonsemantic.shader.debuginfo.100.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/GLSL.std.450.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/ArmMotionEngine.100.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.glsl.std.450.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/NonSemanticVkspReflection.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/DebugInfo.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/NonSemanticDebugPrintf.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/NonSemanticShaderDebugInfo100.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.nonsemantic.graph.debuginfo.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spv.d
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/NonSemanticShaderDebugInfo.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.spv-amd-shader-ballot.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.nonsemantic.vkspreflection.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/ArmExperimentalMLOperations.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.py
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.opencl.debuginfo.100.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/NonSemanticGraphDebugInfo.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/AMD_shader_trinary_minmax.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/OpenCLDebugInfo100.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.core.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.spv-amd-gcn-shader.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/NonSemanticClspvReflection.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/AMD_gcn_shader.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/spirv.lua
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/TOSA.001000.1.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.arm.motion-engine.100.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.nonsemantic.clspvreflection.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.nonsemantic.debugbreak.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/unified1/extinst.nonsemantic.debugprintf.grammar.json
+-- Up-to-date: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.hpp
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.cs
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.hpp11
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/extinst.opencl.std.100.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/OpenCL.std.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/GLSL.std.450.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/extinst.glsl.std.450.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.py
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.core.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.0/spirv.lua
+-- Up-to-date: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.hpp
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.cs
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.hpp11
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/extinst.opencl.std.100.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/OpenCL.std.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/GLSL.std.450.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/extinst.glsl.std.450.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.py
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.core.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.1/spirv.lua
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/spir-v.xml
+-- Up-to-date: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.hpp
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.cs
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.hpp11
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/extinst.opencl.std.100.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/OpenCL.std.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/GLSL.std.450.h
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/extinst.glsl.std.450.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.py
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.core.grammar.json
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/include/spirv/1.2/spirv.lua
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/share/cmake/SPIRV-Headers/SPIRV-HeadersConfigVersion.cmake
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/share/cmake/SPIRV-Headers/SPIRV-HeadersConfig.cmake
+-- Installing: /home/dev/edge-ai/imx95-sysroot/usr/share/pkgconfig/SPIRV-Headers.pc
+dev@dev-HP-EliteBook-840-G6:~/edge-ai/shaderc/third_party/spirv-headers$ find ~/edge-ai/imx95-sysroot/usr \
+  -name 'SPIRV-HeadersConfig.cmake'
+/home/dev/edge-ai/imx95-sysroot/usr/share/cmake/SPIRV-Headers/SPIRV-HeadersConfig.cmake
+dev@dev-HP-EliteBook-840-G6:~/edge-ai/shaderc/third_party/spirv-headers$ cd ~/edge-ai/llama.cpp
+
+cmake -S . -B build-imx95 \
+  -DCMAKE_TOOLCHAIN_FILE=/home/dev/edge-ai/imx95-toolchain.cmake \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DGGML_VULKAN=ON \
+  -DVulkan_INCLUDE_DIR=/home/dev/edge-ai/imx95-sysroot/usr/include \
+  -DVulkan_LIBRARY=/home/dev/edge-ai/imx95-sysroot/usr/lib/libvulkan.so \
+  -DVulkan_GLSLC_EXECUTABLE=/home/dev/edge-ai/shaderc/build/glslc/glslc \
+  -DLLAMA_BUILD_TESTS=OFF \
+  -DLLAMA_BUILD_EXAMPLES=OFF \
+  -DLLAMA_BUILD_SERVER=ON
+-- llama.cpp version: 0.9.0-dev
+CMAKE_BUILD_TYPE=Release
+-- Setting GGML_NATIVE_DEFAULT to OFF
+-- Warning: ccache not found - consider installing it for faster compilation or disable this warning with GGML_CCACHE=OFF
+-- CMAKE_SYSTEM_PROCESSOR: aarch64
+-- GGML_SYSTEM_ARCH: ARM
+-- Including CPU backend
+-- ARM detected
+-- Checking for ARM features using flags:
+-- Adding CPU backend variant ggml-cpu:  
+-- Vulkan found
+-- GL_KHR_cooperative_matrix supported by glslc
+-- GL_NV_cooperative_matrix2 supported by glslc
+-- GL_NV_cooperative_matrix_decode_vector supported by glslc
+-- GL_EXT_integer_dot_product supported by glslc
+-- GL_EXT_bfloat16 supported by glslc
+-- GL_EXT_float_e2m1 supported by glslc
+-- GL_EXT_float_e4m3 supported by glslc
+-- Host compiler: /usr/bin/gcc /usr/bin/g++
+-- vulkan-shaders-gen toolchain file: /home/dev/edge-ai/llama.cpp/build-imx95/host-toolchain.cmake
+-- Including Vulkan backend
+-- ggml version: 0.29.0
+-- ggml commit:  4ed88da2e
+-- Found OpenSSL: /home/dev/edge-ai/imx95-sysroot/usr/lib/libcrypto.so (found version "3.4.2")  
+-- Performing Test OPENSSL_VERSION_SUPPORTED
+-- Performing Test OPENSSL_VERSION_SUPPORTED - Success
+-- OpenSSL found: 3.4.2
+-- Generating embedded license file for target: llama-app
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dev/edge-ai/llama.cpp/build-imx95
+dev@dev-HP-EliteBook-840-G6:~/edge-ai/llama.cpp$ 
+

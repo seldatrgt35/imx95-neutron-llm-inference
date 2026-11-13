@@ -1,0 +1,26 @@
+{
+  "note": "This report cannot prove model initialization or inference execution.",
+  "operator_details": {
+    "CPUExecutionProvider": {
+      "Cast": 2,
+      "Gather": 2,
+      "GroupQueryAttention": 36,
+      "Mul": 36,
+      "QuickGelu": 36,
+      "ReduceSum": 1,
+      "Reshape": 144,
+      "Shape": 1,
+      "SimplifiedLayerNormalization": 73,
+      "SkipSimplifiedLayerNormalization": 72,
+      "Sub": 1
+    },
+    "NeutronExecutionProvider": {
+      "MatMulNBits": 253
+    }
+  },
+  "session_setup_node_placements": {
+    "CPUExecutionProvider": 404,
+    "NeutronExecutionProvider": 253
+  },
+  "status": "STATIC_ASSIGNMENT_ONLY"
+}

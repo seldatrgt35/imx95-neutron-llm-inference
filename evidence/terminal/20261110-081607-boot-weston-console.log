@@ -1,0 +1,159 @@
+[    6.764792] systemd[1]: Mounted Kernel Debug File System.                    
+[  OK  ] Mounted Kernel Debug File System.                                      
+[    6.788639] systemd[1]: Started Journal Service.                             
+[  OK  ] Started Journal Service.                                               
+[  OK  ] Mounted Temporary Directory /tmp.                                      
+[  OK  ] Finished Create List of Static Device Nodes.                           
+[  OK  ] Finished Load Kernel Module configfs.                                  
+[  OK  ] Finished Load Kernel Module drm.                                       
+[  OK  ] Finished Load Kernel Module fuse.                                      
+[  OK  ] Finished Load Kernel Modules.                                          
+[  OK  ] Finished Generate network units from Kernel command line.              
+[  OK  ] Finished Remount Root and Kernel File Systems.                         
+[  OK  ] Finished Load udev Rules from Credentials.                             
+         Mounting FUSE Control File System...                                   
+         Mounting Kernel Configuration File System...                           
+         Starting Flush Journal to Persistent Storage...                        
+         Starting Apply Kernel Variables...                                     
+[    7.051465] systemd-journald[179]: Received client request to flush runtime j
+ournal.                                                                         
+         Starting Create Static Device Nodes in /dev gracefully...              
+[  OK  ] Mounted FUSE Control File System.                                      
+[  OK  ] Mounted Kernel Configuration File System.                              
+[  OK  ] Finished Flush Journal to Persistent Storage.                          
+[  OK  ] Finished Apply Kernel Variables.                                       
+[  OK  ] Finished Create Static Device Nodes in /dev gracefully.                
+[    7.162579] audit: type=1334 audit(1748536477.804:2): prog-id=6 op=LOAD      
+         Starting Network Time Synchronization...                               
+         Starting Create Static Device Nodes in /dev...                         
+[    7.226419] audit: type=1334 audit(1748536477.868:3): prog-id=7 op=LOAD      
+[    7.233230] audit: type=1334 audit(1748536477.876:4): prog-id=8 op=LOAD      
+[    7.240141] audit: type=1334 audit(1748536477.880:5): prog-id=9 op=LOAD      
+         Starting User Database Manager...                                      
+[  OK  ] Finished Create Static Device Nodes in /dev.                           
+[  OK  ] Reached target Preparation for Local File Systems.                     
+[    7.298548] audit: type=1334 audit(1748536477.940:6): prog-id=10 op=LOAD     
+[    7.305357] audit: type=1334 audit(1748536477.948:7): prog-id=11 op=LOAD     
+         Starting Rule-based Manager for Device Events and Files...             
+[  OK  ] Started User Database Manager.                                         
+[  OK  ] Finished Coldplug All udev Devices.                                    
+[  OK  ] Started Network Time Synchronization.                                  
+[  OK  ] Started Rule-based Manager for Device Events and Files.                
+[  OK  ] Reached target System Time Set.                                        
+[  OK  ] Found device /dev/ttyLP0.                                              
+         Mounting /var/volatile...                                              
+[  OK  ] Mounted /var/volatile.                                                 
+         Starting Load/Save OS Random Seed...                                   
+[  OK  ] Reached target Local File Systems.                                     
+         Starting Create System Files and Directories...                        
+[  OK  ] Finished Load/Save OS Random Seed.                                     
+[  OK  ] Finished Create System Files and Directories.                          
+         Starting RPC Bind...                                                   
+         Starting Record System Boot/Shutdown in UTMP...                        
+[  OK  ] Started RPC Bind.                                                      
+[  OK  ] Finished Record System Boot/Shutdown in UTMP.                          
+[  OK  ] Reached target System Initialization.                                  
+[  OK  ] Started Daily rotation of log files.                                   
+[  OK  ] Started Daily Cleanup of Temporary Directories.                        
+[    8.221650] CAN device driver interface                                      
+[  OK  ] Reached target Timer Units.                                            
+[  OK  ] Listening on Avahi mDNS/DNS-SD Stack Activation Socket.                
+[  OK  ] Listening on D-Bus System Message Bus Socket.                          
+         Starting Docker Socket for the API...                                  
+[  OK  ] Listening on PC/SC Smart Card Daemon Activation Socket.                
+[  OK  ] Listening on OpenSSH Server Socket\u2026temd-ssh-generator, AF_UNIX Local). 
+         Starting sshd.socket...                                                
+[  OK  ] Listening on Hostname Service Socket.                                  
+[    8.361727] mxc-jpeg 4c500000.jpegdec: choose slot 0                         
+[    8.387043] mxc-jpeg 4c500000.jpegdec: decoder device registered as /dev/vide
+o2 (81,2)                                                                       
+                                                                                
+[    8.396745] mxc-jpeg 4c550000.jpegenc: choose slot 0                         
+[    8.412163] mxc-jpeg 4c550000.jpegenc: encoder device registered as /dev/vide
+o3 (81,3)                                                                       
+[  OK  ] Listening on Docker Socket for the API.                                
+[  OK  ] Listening on sshd.socket.                                              
+[  OK  ] Listening on Weston socket.                                            
+[  OK  ] Created slice Slice /system/systemd-fsck.                              
+[  OK  ] Created slice Slice /system/tee-supplicant.                            
+[  OK  ] Reached target Socket Units.                                           
+[  OK  ] Reached target Basic System.                                           
+[  OK  ] Reached target Hardware activated USB gadget.                          
+         Starting Modem Manager...                                              
+         Starting Save/Restore Sound Card State...                              
+[  OK  ] Started Job spooling tools.                                            
+[  OK  ] Started Periodic Command Scheduler.                                    
+         Starting D-Bus System Message Bus...                                   
+[  OK  ] Started Linux Firmware Loader Daemon.                                  
+         Starting IPv6 Packet Filtering Framework...                            
+         Starting IPv4 Packet Filtering Framework...                            
+         Starting Telephony service...                                          
+[  OK  ] Started Parsec Service.                                                
+[    8.941362] audit: type=1334 audit(1748536479.584:8): prog-id=12 op=LOAD     
+[    8.948194] audit: type=1334 audit(1748536479.592:9): prog-id=13 op=LOAD     
+[    8.954934] audit: type=1334 audit(1748536479.596:10): prog-id=14 op=LOAD    
+[  OK  ] Started Seat management daemon.                                        
+[  OK  ] Started System Logging Service.                                        
+         Starting File System Check on /dev/mmcblk0p1...                        
+         Starting User Login Management...                                      
+         Starting Virtual Console Setup...                                      
+         Starting TEE Supplicant on teepriv0...                                 
+         Starting OpenSSH Key Generation...                                     
+[  OK  ] Finished Save/Restore Sound Card State.                                
+[  OK  ] Finished IPv6 Packet Filtering Framework.                              
+[  OK  ] Finished IPv4 Packet Filtering Framework.                              
+[  OK  ] Reached target Preparation for Network.                                
+[  OK  ] Reached target Sound Card.                                             
+         Starting Network Configuration...                                      
+[  OK  ] Finished File System Check on /dev/mmcblk0p1.                          
+         Mounting /run/media/boot-mmcblk0p1...                                  
+[  OK  ] Started TEE Supplicant on teepriv0.                                    
+[  OK  ] Mounted /run/media/boot-mmcblk0p1.                                     
+[  OK  ] Finished OpenSSH Key Generation.                                       
+[  OK  ] Started D-Bus System Message Bus.                                      
+[  OK  ] Started User Login Management.                                         
+[  OK  ] Finished Virtual Console Setup.                                        
+         Starting Connection service...                                         
+[  OK  ] Started Telephony service.                                             
+[  OK  ] Started Network Configuration.                                         
+         Starting Enable Persistent Storage in systemd-networkd...              
+[  OK  ] Started Modem Manager.                                                 
+[  OK  ] Finished Enable Persistent Storage in systemd-networkd.                
+[  OK  ] Started Connection service.                                            
+[  OK  ] Reached target Network.                                                
+         Starting Avahi mDNS/DNS-SD Stack...                                    
+         Starting containerd container runtime...                               
+[  OK  ] Started Network Time Service.                                          
+         Starting Permit User Sessions...                                       
+[  OK  ] Finished Permit User Sessions.                                         
+[  OK  ] Started Getty on tty1.                                                 
+[  OK  ] Started Serial Getty on ttyLP0.                                        
+[  OK  ] Reached target Login Prompts.                                          
+         Starting Hostname Service...                                           
+         Starting Weston, a Wayland compositor, as a system service...          
+         Starting WPA supplicant...                                             
+[  OK  ] Started Avahi mDNS/DNS-SD Stack.                                       
+[  OK  ] Started WPA supplicant.                                                
+[  OK  ] Created slice User Slice of UID 0.                                     
+         Starting User Runtime Directory /run/user/0...                         
+[  OK  ] Started Hostname Service.                                              
+[  OK  ] Finished User Runtime Directory /run/user/0.                           
+         Starting User Manager for UID 0...                                     
+[  OK  ] Started containerd container runtime.                                  
+[  OK  ] Reached target Multi-User System.                                      
+[  OK  ] Started User Manager for UID 0.                                        
+[  OK  ] Started Session c1 of User root.                                       
+[FAILED] Failed to start Weston, a Wayland compositor, as a system service.     
+See 'systemctl status weston.service' for details.                              
+[  OK  ] Reached target Graphical Interface.                                    
+         Starting Record Runlevel Change in UTMP...                             
+         Starting Weston, a Wayland compositor, as a system service...          
+[  OK  ] Finished Record Runlevel Change in UTMP.                               
+[  OK  ] Started Session c2 of User root.                                       
+[FAILED] Failed to start Weston, a Wayland compositor, as a system service.     
+See 'systemctl status weston.service' for details.                              
+p104p104                                                                        
+NXP i.MX Release Distro 6.12-walnascar imx95-15x15-lpddr4x-frdm ttyLP0          
+                                                                                
+imx95-15x15-lpddr4x-frdm login: root                                            
+root@imx95-15x15-lpddr4x-frdm:~# 

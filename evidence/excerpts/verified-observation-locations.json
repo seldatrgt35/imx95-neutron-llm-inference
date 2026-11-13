@@ -1,0 +1,80 @@
+[
+  {
+    "claim": "Neutron driver kernel registration",
+    "evidence_path": "evidence/terminal/20261111-082645-litert-npu-mobilenet-validation.log",
+    "line": 45,
+    "search": "created neutron device"
+  },
+  {
+    "claim": "LiteRT NPU accelerator registration",
+    "evidence_path": "evidence/terminal/20261111-082645-litert-npu-mobilenet-validation.log",
+    "line": 80,
+    "search": "NPU accelerator registered."
+  },
+  {
+    "claim": "LiteRT measured MobileNet runtime",
+    "evidence_path": "evidence/terminal/20261111-082645-litert-npu-mobilenet-validation.log",
+    "line": 132,
+    "search": "avg 116.480 ms"
+  },
+  {
+    "claim": "ONNX Runtime NPU provider warning",
+    "evidence_path": "evidence/terminal/20261110-140415-onnxruntime-matmul-cpu-fallback.log",
+    "line": 81,
+    "search": "Only NeutronGraph op will be assigned to NPU"
+  },
+  {
+    "claim": "ONNX MatMul CPU profiling",
+    "evidence_path": "evidence/terminal/20261110-140415-onnxruntime-matmul-cpu-fallback.log",
+    "line": 168,
+    "search": "MatMul_0_kernel_time -> CPUExecutionProvider"
+  },
+  {
+    "claim": "Neutron static placement",
+    "evidence_path": "evidence/terminal/20261112-113926-qwen-ort-verbose-253-neutron-nodes.log",
+    "line": 93,
+    "search": "Node(s) placed on [NeutronExecutionProvider]. Number of nodes: 253"
+  },
+  {
+    "claim": "CPU static placement",
+    "evidence_path": "evidence/terminal/20261112-113926-qwen-ort-verbose-253-neutron-nodes.log",
+    "line": 347,
+    "search": "Node(s) placed on [CPUExecutionProvider]. Number of nodes: 404"
+  },
+  {
+    "claim": "Neutron buffer slots",
+    "evidence_path": "evidence/terminal/20261112-113926-qwen-ort-verbose-253-neutron-nodes.log",
+    "line": 13,
+    "search": "Alloc CMA userspace memory 2048 MB"
+  },
+  {
+    "claim": "Hybrid boundary",
+    "evidence_path": "evidence/terminal/20261112-122647-hybrid-graph-partitioning-errors.log",
+    "line": 507,
+    "search": "Boundary: ["
+  },
+  {
+    "claim": "Shared partition nodes",
+    "evidence_path": "evidence/terminal/20261112-122647-hybrid-graph-partitioning-errors.log",
+    "line": 508,
+    "search": "Shared computation nodes: 11"
+  },
+  {
+    "claim": "Unsupported ONNX schema",
+    "evidence_path": "evidence/terminal/20261112-122647-hybrid-graph-partitioning-errors.log",
+    "line": 530,
+    "search": "No Op registered for SimplifiedLayerNormalization"
+  },
+  {
+    "claim": "External tensor hard-link issue",
+    "evidence_path": "evidence/terminal/20261112-122647-hybrid-graph-partitioning-errors.log",
+    "line": 2,
+    "search": "potential hardlink attack"
+  },
+  {
+    "claim": "Vulkan compile configuration",
+    "evidence_path": "evidence/terminal/20261110-124019-host-vulkan-cross-compilation.log",
+    "line": 161,
+    "search": "-- Including Vulkan backend"
+  }
+]

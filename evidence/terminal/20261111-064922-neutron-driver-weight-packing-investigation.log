@@ -1,0 +1,192 @@
+mx95evk:~# echo "=== INFERENCE TOOLS ==="
+ -=== INFERENCE TOOLS ===
+v neutron_perf.sh
+
+echo "=== TFLITE LIBRARIES ==="
+ldconfig -p | grep -Ei 'tensorflowlite|litert|neutron'
+
+echo "=== MODEL FILES ==="
+find /usr/share /opt /home/root \
+  -type f \( -name '*.tflite' -o -name '*.onnx' -o -name '*.ort' \) \
+  2>/dev/null | head -30root@imx95evk:~# command -v benchmark_model
+root@imx95evk:~# command -v label_image
+root@imx95evk:~# command -v neutron_perf.sh
+/bin/neutron_perf.sh
+root@imx95evk:~# 
+root@imx95evk:~# echo "=== TFLITE LIBRARIES ==="
+=== TFLITE LIBRARIES ===
+root@imx95evk:~# ldconfig -p | grep -Ei 'tensorflowlite|litert|neutron'
+        libneutron_delegate.so (libc6,AArch64) => /usr/lib/libneutron_delegate.so
+        liblitert_neutron_delegate.so (libc6,AArch64) => /usr/lib/liblitert_neutron_delegate.so
+        libNeutronDriver.so (libc6,AArch64) => /usr/lib/libNeutronDriver.so
+        libLiteRtDispatch_NxpNeutron.so (libc6,AArch64) => /usr/lib/libLiteRtDispatch_NxpNeutron.so
+        libLiteRt.so (libc6,AArch64) => /usr/lib/libLiteRt.so
+root@imx95evk:~# 
+root@imx95evk:~# echo "=== MODEL FILES ==="
+=== MODEL FILES ===
+root@imx95evk:~# find /usr/share /opt /home/root \
+>   -type f \( -name '*.tflite' -o -name '*.onnx' -o -name '*.ort' \) \
+>   2>/dev/null | head -30
+root@imx95evk:~# sed -n '1,160p' /usr/bin/neutron_perf.sh
+#!/bin/bash
+
+#
+# Copyright 2020-2026 NXP
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Simple NPU monitor using perf_counters interface
+# Reads perf_counters and calculates NPU load and DDR bandwidth in userspace
+#
+# Register behavior:
+# - All registers are accumulators
+# - Write to clear (need to write to reset counters)
+# - 32-bit counters saturate at 0xFFFFFFFF and stop counting
+# - cycle is 64-bit (CYCHIGH:CYCLOW), others are 32-bit
+
+PERF_COUNTERS="/sys/kernel/debug/neutron/perf_counters"
+INTERVAL=${1:-1}  # Default 1 second
+
+if [ ! -e "$PERF_COUNTERS" ]; then
+    echo "Error: $PERF_COUNTERS not found"
+    echo "Ensure neutron driver is loaded and debugfs mounted"
+    exit 1
+fi
+
+# Function to safely convert hex to decimal
+hex_to_dec() {
+    local val="$1"
+    # Remove leading/trailing whitespace
+    val=$(echo "$val" | tr -d '[:space:]')
+    # Check if empty or invalid
+    if [ -z "$val" ]; then
+        echo "0"
+        return
+    fi
+    # Ensure it starts with 0x, if not add it
+    case "$val" in
+        0x*|0X*) ;;
+        *) val="0x$val" ;;
+    esac
+    # Try to convert, return 0 on failure
+    printf "%d" "$val" 2>/dev/null || echo "0"
+}
+
+# Function to get absolute value
+abs() {
+    local val=$1
+    echo ${val#-}
+}
+
+echo "Neutron NPU Monitor (Simplified)"
+echo "Reading from: $PERF_COUNTERS"
+echo "Interval: ${INTERVAL}s"
+echo "Press Ctrl+C to stop"
+echo ""
+echo "NPU Load    DDR Bandwidth (Read/Write/Total)"
+echo "------------------------------------------"
+
+# Initialize previous values
+prev_cycle_dec=0
+prev_nact_dec=0
+prev_ddr_rwords_dec=0
+prev_ddr_wwords_dec=0
+prev_ddr_spread_dec=0
+first_read=1
+
+while true; do
+    # Read perf_counters (space-separated hex values)
+    # Format: <CYCHIGH> <CYCLOW> <DDRLATENT> <DDRSPREAD> <DDRRCNTS> <DDRWWORDS> <DDRRWORDS> <DDRSTALL> <NSTALL> <NACT>
+    read -r cycle_high cycle_low ddrlatent ddrspread ddrrcnts ddrwwords ddrrwords ddrstall nstall nact < "$PERF_COUNTERS"
+
+    if [ -z "$cycle_high" ]; then
+        echo "Error reading perf counters"
+        sleep 1
+        continue
+    fi
+
+    # Convert hex to decimal safely
+    cycle_high_dec=$(hex_to_dec "$cycle_high")
+    cycle_low_dec=$(hex_to_dec "$cycle_low")
+    cycle_dec=$(( (cycle_high_dec << 32) | cycle_low_dec ))
+    nact_dec=$(hex_to_dec "$nact")
+    ddr_rwords_dec=$(hex_to_dec "$ddrrwords")
+    ddr_wwords_dec=$(hex_to_dec "$ddrwwords")
+    ddr_spread_dec=$(hex_to_dec "$ddrspread")
+
+    # Skip first read to establish baseline
+    if [ "$first_read" -eq 1 ]; then
+        prev_cycle_dec=$cycle_dec
+        prev_nact_dec=$nact_dec
+        prev_ddr_rwords_dec=$ddr_rwords_dec
+        prev_ddr_wwords_dec=$ddr_wwords_dec
+        prev_ddr_spread_dec=$ddr_spread_dec
+        first_read=0
+        sleep $INTERVAL
+        continue
+    fi
+
+    # Calculate deltas between two reads
+    delta_cycle=$((cycle_dec - prev_cycle_dec))
+    delta_nact=$((nact_dec - prev_nact_dec))
+    delta_ddr_rwords=$((ddr_rwords_dec - prev_ddr_rwords_dec))
+    delta_ddr_wwords=$((ddr_wwords_dec - prev_ddr_wwords_dec))
+    delta_ddr_spread=$((ddr_spread_dec - prev_ddr_spread_dec))
+
+    # Handle counter wrap-around or reset (negative delta)
+    if [ "$delta_cycle" -lt 0 ]; then
+        prev_cycle_dec=$cycle_dec
+        prev_nact_dec=$nact_dec
+        prev_ddr_rwords_dec=$ddr_rwords_dec
+        prev_ddr_wwords_dec=$ddr_wwords_dec
+        prev_ddr_spread_dec=$ddr_spread_dec
+        sleep $INTERVAL
+        continue
+    fi
+
+    # Ensure deltas are non-negative (use absolute value)
+    delta_nact=$(abs $delta_nact)
+    delta_ddr_rwords=$(abs $delta_ddr_rwords)
+    delta_ddr_wwords=$(abs $delta_ddr_wwords)
+    delta_ddr_spread=$(abs $delta_ddr_spread)
+
+    # Update previous values for next iteration
+    prev_cycle_dec=$cycle_dec
+    prev_nact_dec=$nact_dec
+    prev_ddr_rwords_dec=$ddr_rwords_dec
+    prev_ddr_wwords_dec=$ddr_wwords_dec
+    prev_ddr_spread_dec=$ddr_spread_dec
+
+    # Formula: (delta_NACT * 100) / delta_cycle
+    if [ "$delta_cycle" -gt 0 ]; then
+        npu_load=$(( (delta_nact * 100) / delta_cycle ))
+        if [ "$npu_load" -gt 100 ]; then
+            npu_load=100
+        fi
+    else
+        npu_load=0
+    fi
+
+    # Calculate total DDR cycles (read + write + idle) using deltas
+    ddr_total_cycles=$((delta_ddr_rwords + delta_ddr_wwords + delta_ddr_spread))
+
+    # Calculate DDR bandwidth utilization percentage
+    if [ "$ddr_total_cycles" -gt 0 ]; then
+        ddr_read_bw=$(( (delta_ddr_rwords * 100) / ddr_total_cycles ))
+        ddr_write_bw=$(( (delta_ddr_wwords * 100) / ddr_total_cycles ))
+        ddr_total_bw=$(( ((delta_ddr_rwords + delta_ddr_wwords) * 100) / ddr_total_cycles ))
+        # Clamp to 100
+        [ "$ddr_read_bw" -gt 100 ] && ddr_read_bw=100
+        [ "$ddr_write_bw" -gt 100 ] && ddr_write_bw=100
+        [ "$ddr_total_bw" -gt 100 ] && ddr_total_bw=100
+    else
+        ddr_read_bw=0
+        ddr_write_bw=0
+        ddr_total_bw=0
+    fi
+
+    printf "%6s%%    %4s%%(R) %4s%%(W) %4s%%(T)\n" "$npu_load" "$ddr_read_bw" "$ddr_write_bw" "$ddr_total_bw"
+
+root@imx95evk:~# 
+[Third-party Neutron conversion implementation omitted. See docs/06-neutron-prepacking.md.]

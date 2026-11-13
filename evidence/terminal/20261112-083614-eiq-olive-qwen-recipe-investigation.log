@@ -1,0 +1,6 @@
+en3-neutron/eiq-olive$ cd ~/qwen3-neutron/eiq-olive
+
+cat examples/Qwen3/Qwen3-1.7B/qwen3-1.7B_Spinquant_ONNX_RTN_4bit.json
+
+echo "
+[Third-party Olive example user_script.py omitted. See documentation and upstream project.]
